@@ -1,5 +1,5 @@
-name: fcode_tool
-description: "FCode Tool"
+name: myspace_flutter_tool
+description: "MySpace Flutter Tool"
 homepage: www.shoh.dev
 
 version: 1.0.0+1
@@ -13,7 +13,8 @@ dependencies:
   cupertino_icons: ^1.0.8
 
   # FCode packages START
-  fcode_design_system: ^0.0.1
+  myspace_design_system: ^0.0.1
+  myspace_core: ^0.0.1
   # FCode packages END
 
 dev_dependencies:

@@ -1,6 +1,6 @@
 flutter create
---org com.shoh.dev.fcode.tool
-fcode_tool
+--org com.shoh.dev.myspace.flutter_tool
+myspace_flutter_tool
 
 
 ### Info

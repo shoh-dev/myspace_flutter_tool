@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fcode_design_system/fcode_design_system.dart';
+import 'package:myspace_design_system/myspace_design_system.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,15 +49,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextComponent(
-                value: HardCodedTextComponentValue(
-                    'You have pushed the button this many times:',
-                    ignoreLog: true)),
-            TextComponent(value: NumberTextComponentValue(_counter)),
+            TextComponent.hardCoded(
+                'You have pushed the button this many times:'),
+            TextComponent.number(_counter),
           ],
         ),
       ),
-      floatingActionButton: IconButtonComponent(
+      floatingActionButton: ButtonComponent.icon(
         icon: Icons.add_rounded,
         onPressed: _incrementCounter,
       ), // This trailing comma makes auto-formatting nicer for build methods.

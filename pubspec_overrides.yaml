@@ -1,4 +1,6 @@
-# melos_managed_dependency_overrides: fcode_design_system
+# melos_managed_dependency_overrides: myspace_design_system,myspace_core
 dependency_overrides:
-  fcode_design_system:
-    path: ../fcode_design_system
+  myspace_design_system:
+    path: ../myspace_design_system
+  myspace_core:
+    path: ../myspace_core
