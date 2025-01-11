@@ -111,8 +111,8 @@ class __$$AppStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AppStateImpl implements _AppState {
-  const _$AppStateImpl({required this.ipState});
+class _$AppStateImpl extends _AppState {
+  const _$AppStateImpl({required this.ipState}) : super._();
 
   @override
   final IpState ipState;
@@ -142,8 +142,9 @@ class _$AppStateImpl implements _AppState {
       __$$AppStateImplCopyWithImpl<_$AppStateImpl>(this, _$identity);
 }
 
-abstract class _AppState implements AppState {
+abstract class _AppState extends AppState {
   const factory _AppState({required final IpState ipState}) = _$AppStateImpl;
+  const _AppState._() : super._();
 
   @override
   IpState get ipState;

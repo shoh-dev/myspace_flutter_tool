@@ -15,24 +15,21 @@ dependencies:
   # FCode packages START
   myspace_design_system: ^0.0.1
   myspace_core: ^0.0.1
+  myspace_macros: ^0.0.1
   # FCode packages END
 
   window_manager: ^0.4.3
   yaml: ^3.1.3
-  provider: ^6.1.2
   go_router: ^14.6.3
-  flutter_bloc: ^8.1.6
   flutter_redux: ^0.10.0
   redux: ^5.0.0
   freezed_annotation: ^2.4.3
-  fast_immutable_collections: ^11.0.3
-  json: ^0.20.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-  build_runner: ^2.4.11
+  build_runner: ^2.4.14
   freezed: ^2.5.2
 
 flutter:

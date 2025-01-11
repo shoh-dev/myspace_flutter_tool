@@ -1,6 +1,7 @@
 import 'package:myspace_core/myspace_core.dart';
 import 'package:myspace_flutter_tool/src/data/redux/app/default_action.dart';
 import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
+import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/model/model.dart';
 import 'package:myspace_flutter_tool/src/data/repositories/yaml/yaml_local.dart';
 import 'package:redux/redux.dart';
 
@@ -17,7 +18,7 @@ class GetYamlAction extends DefaultAction<Map<String, dynamic>> {
       next(UpdateIpStateAction(yaml: resultLoad));
       return resultLoad;
     } catch (e) {
-      return Result.error(Exception(e));
+      return Result.error(ResultException(e));
     }
   }
 }

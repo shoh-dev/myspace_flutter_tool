@@ -11,8 +11,8 @@ class YamlRepoLocal implements YamlRepo {
     final pubspecFile = File('$path/pubspec.yaml');
 
     if (!pubspecFile.existsSync()) {
-      return Result.error(
-          Exception('Error parsing pubspec.yaml for the given path: $path'));
+      return Result.error(ResultException(
+          'Error parsing pubspec.yaml for the given path: $path'));
     }
 
     final pubspecContent = pubspecFile.readAsStringSync();
@@ -21,7 +21,7 @@ class YamlRepoLocal implements YamlRepo {
       return Result.ok(yamlMap.cast<String, dynamic>());
     }
 
-    return Result.error(
-        Exception('Error parsing pubspec.yaml for the given path: $path'));
+    return Result.error(ResultException(
+        'Error parsing pubspec.yaml for the given path: $path'));
   }
 }

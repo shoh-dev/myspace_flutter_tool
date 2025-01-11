@@ -1,31 +1,38 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:myspace_design_system/myspace_design_system.dart';
 import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
 import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/actions/get_yaml_action.dart';
+import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/actions/increment_action.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
 
+  final action = const GetYamlAction();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StateProvider<Map<String, dynamic>>(
+      body: ResultStateProvider<Map<String, dynamic>>(
         key: const Key('Homepage'),
         selector: (state) => state.ipState.yaml,
-        retryAction: const GetYamlAction().dispatch,
+        retryAction: action.execute,
         okBuilder: (context, vm) {
           return Center(
             child: Row(
               spacing: 16,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                ButtonComponent.destructive(
+                  icon: Icons.note_add_rounded,
+                  text: "Go To Form Page",
+                  onPressed: () => context.push("/form"),
+                ),
                 ButtonComponent.primary(
-                    icon: Icons.add,
-                    text: vm.value.toString().substring(0, 2),
-                    onPressed: () {
-                      const GetYamlAction().dispatch();
-                    }),
+                  icon: Icons.add,
+                  text: vm.value.toString().substring(0, 2),
+                  onPressed: action.execute,
+                ),
                 const HomepageCounter(),
               ],
             ),
@@ -44,13 +51,13 @@ class HomepageCounter extends StatelessWidget {
     return StateProvider<int>(
       key: const Key('HomepageCounter'),
       selector: (state) => state.ipState.count,
-      okBuilder: (context, vm) {
+      retryAction: const IncrementAction().execute,
+      builder: (context, vm, retryAction) {
         return ButtonComponent.primary(
-            icon: Icons.add,
-            text: vm.value.toString(),
-            onPressed: () {
-              const IncrementAction().dispatch();
-            });
+          icon: Icons.add,
+          text: vm.toString(),
+          onPressed: retryAction,
+        );
       },
     );
   }

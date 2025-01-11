@@ -8,20 +8,20 @@ class IpState with _$IpState {
 
   const factory IpState({
     required Result<String> ip,
-    required Result<int> count,
+    required int count,
     required Result<Map<String, dynamic>> yaml,
   }) = _IpState;
 
   //initial factory method
   factory IpState.initial() => IpState(
       ip: const Result.ok(""),
-      count: const Result.ok(0),
-      yaml: const Result.ok({}));
+      count: 0,
+      yaml: Result.error(ResultException("No yaml data loaded yet")));
 }
 
 class UpdateIpStateAction {
   final Result<String>? ip;
-  final Result<int>? count;
+  final int? count;
   final Result<Map<String, dynamic>>? yaml;
 
   const UpdateIpStateAction({this.ip, this.count, this.yaml});

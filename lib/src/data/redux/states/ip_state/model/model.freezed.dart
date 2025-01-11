@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$IpState {
   Result<String> get ip => throw _privateConstructorUsedError;
-  Result<int> get count => throw _privateConstructorUsedError;
+  int get count => throw _privateConstructorUsedError;
   Result<Map<String, dynamic>> get yaml => throw _privateConstructorUsedError;
 
   /// Create a copy of IpState
@@ -31,10 +31,7 @@ abstract class $IpStateCopyWith<$Res> {
   factory $IpStateCopyWith(IpState value, $Res Function(IpState) then) =
       _$IpStateCopyWithImpl<$Res, IpState>;
   @useResult
-  $Res call(
-      {Result<String> ip,
-      Result<int> count,
-      Result<Map<String, dynamic>> yaml});
+  $Res call({Result<String> ip, int count, Result<Map<String, dynamic>> yaml});
 }
 
 /// @nodoc
@@ -64,7 +61,7 @@ class _$IpStateCopyWithImpl<$Res, $Val extends IpState>
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
-              as Result<int>,
+              as int,
       yaml: null == yaml
           ? _value.yaml
           : yaml // ignore: cast_nullable_to_non_nullable
@@ -80,10 +77,7 @@ abstract class _$$IpStateImplCopyWith<$Res> implements $IpStateCopyWith<$Res> {
       __$$IpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Result<String> ip,
-      Result<int> count,
-      Result<Map<String, dynamic>> yaml});
+  $Res call({Result<String> ip, int count, Result<Map<String, dynamic>> yaml});
 }
 
 /// @nodoc
@@ -111,7 +105,7 @@ class __$$IpStateImplCopyWithImpl<$Res>
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
-              as Result<int>,
+              as int,
       yaml: null == yaml
           ? _value.yaml
           : yaml // ignore: cast_nullable_to_non_nullable
@@ -130,7 +124,7 @@ class _$IpStateImpl extends _IpState {
   @override
   final Result<String> ip;
   @override
-  final Result<int> count;
+  final int count;
   @override
   final Result<Map<String, dynamic>> yaml;
 
@@ -164,14 +158,14 @@ class _$IpStateImpl extends _IpState {
 abstract class _IpState extends IpState {
   const factory _IpState(
       {required final Result<String> ip,
-      required final Result<int> count,
+      required final int count,
       required final Result<Map<String, dynamic>> yaml}) = _$IpStateImpl;
   const _IpState._() : super._();
 
   @override
   Result<String> get ip;
   @override
-  Result<int> get count;
+  int get count;
   @override
   Result<Map<String, dynamic>> get yaml;
 

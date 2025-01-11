@@ -5,28 +5,13 @@ import 'package:myspace_design_system/myspace_design_system.dart';
 import 'package:myspace_flutter_tool/src/data/redux/app/app_store.dart';
 import 'package:myspace_flutter_tool/src/data/repositories/yaml/yaml_local.dart';
 import 'package:myspace_flutter_tool/src/presentation/pages/homepage/homepage.dart';
-import 'package:myspace_flutter_tool/src/presentation/pages/homepage/homepage_vm.dart';
-import 'package:provider/provider.dart';
+import 'package:myspace_flutter_tool/src/presentation/pages/redux_cases/form/form_page.dart';
 
-import 'src/data/redux/states/ip_state/model/model2.dart';
 import 'src/data/repositories/yaml/yaml.dart';
 // import 'package:window_manager/window_manager.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Given some arbitrary JSON:
-  var userJson = {
-    'age': 5,
-    'name': 'Roger',
-    'username': 'roger1337',
-    'city': 'New York'
-  };
-
-  // Use the generated members:
-  var user = User.fromJson(userJson);
-  print(user);
-  print(user.toJson());
+  // WidgetsFlutterBinding.ensureInitialized();
 
   // Must add this line.
   // await windowManager.ensureInitialized();
@@ -40,17 +25,7 @@ void main() async {
 
   // await windowManager.waitUntilReadyToShow(windowOptions);
 
-  runApp(
-    MultiProvider(
-      providers: [
-        Provider<YamlRepo>(
-          create: (context) => YamlRepoLocal(),
-        ),
-      ],
-      child:
-          StoreProvider(store: appStore, child: const MySpaceFlutterToolApp()),
-    ),
-  );
+  runApp(StoreProvider(store: appStore, child: const MySpaceFlutterToolApp()));
 }
 
 class MySpaceFlutterToolApp extends StatefulWidget {
@@ -80,6 +55,14 @@ GoRouter _router = GoRouter(
       path: "/",
       builder: (context, state) {
         return const Homepage();
+      },
+    ),
+
+    //form page
+    GoRoute(
+      path: "/form",
+      builder: (context, state) {
+        return const FormPage();
       },
     ),
   ],
