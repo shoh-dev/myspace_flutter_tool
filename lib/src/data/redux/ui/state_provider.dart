@@ -24,6 +24,7 @@ class ResultStateProvider<T> extends StatelessWidget {
     this.retryAction,
     this.onInitialBuild,
     this.onDispose,
+    this.onDidChange,
   });
 
   final VoidCallback? retryAction;
@@ -56,6 +57,8 @@ class ResultStateProvider<T> extends StatelessWidget {
 
   final OnDisposeCallback<AppState>? onDispose;
 
+  final OnDidChangeCallback<Result<T>>? onDidChange;
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, Result<T>>(
@@ -63,12 +66,7 @@ class ResultStateProvider<T> extends StatelessWidget {
       converter: (store) => selector(store.state),
       onInitialBuild: onInitialBuild,
       onDispose: onDispose,
-      onDidChange: (previousViewModel, viewModel) {
-        if (previousViewModel != viewModel) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("State changed to $viewModel")));
-        }
-      },
+      onDidChange: onDidChange,
       builder: (context, vm) {
         log("Rebuild $key, hashCode ${vm.hashCode}");
 
@@ -108,6 +106,7 @@ class StateProvider<T> extends StatelessWidget {
     this.retryAction,
     this.onInitialBuild,
     this.onDispose,
+    this.onDidChange,
   });
 
   final VoidCallback? retryAction;
@@ -124,6 +123,8 @@ class StateProvider<T> extends StatelessWidget {
 
   final OnDisposeCallback<AppState>? onDispose;
 
+  final OnDidChangeCallback<T>? onDidChange;
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, T>(
@@ -131,12 +132,7 @@ class StateProvider<T> extends StatelessWidget {
       converter: (store) => selector(store.state),
       onInitialBuild: onInitialBuild,
       onDispose: onDispose,
-      onDidChange: (previousViewModel, viewModel) {
-        if (previousViewModel != viewModel) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("State changed to $viewModel")));
-        }
-      },
+      onDidChange: onDidChange,
       builder: (context, vm) {
         log("Rebuild $key, hashCode ${vm.hashCode}");
 

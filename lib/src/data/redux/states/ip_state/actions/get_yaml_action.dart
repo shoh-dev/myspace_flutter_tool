@@ -5,7 +5,7 @@ import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/model/model.
 import 'package:myspace_flutter_tool/src/data/repositories/yaml/yaml_local.dart';
 import 'package:redux/redux.dart';
 
-class GetYamlAction extends DefaultAction<Map<String, dynamic>> {
+class GetYamlAction extends AsyncDefaultAction<Map<String, dynamic>> {
   const GetYamlAction();
 
   @override

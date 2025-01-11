@@ -4,7 +4,7 @@ import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
 import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/model/model.dart';
 import 'package:redux/redux.dart';
 
-class IncrementAction extends DefaultAction<void> {
+class IncrementAction extends AsyncDefaultAction<void> {
   const IncrementAction();
 
   @override

@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AppState {
   IpState get ipState => throw _privateConstructorUsedError;
+  MyFormState get myFormState => throw _privateConstructorUsedError;
 
   /// Create a copy of AppState
   /// with the given fields replaced by the non-null parameter values.
@@ -30,9 +31,10 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({IpState ipState});
+  $Res call({IpState ipState, MyFormState myFormState});
 
   $IpStateCopyWith<$Res> get ipState;
+  $MyFormStateCopyWith<$Res> get myFormState;
 }
 
 /// @nodoc
@@ -51,12 +53,17 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @override
   $Res call({
     Object? ipState = null,
+    Object? myFormState = null,
   }) {
     return _then(_value.copyWith(
       ipState: null == ipState
           ? _value.ipState
           : ipState // ignore: cast_nullable_to_non_nullable
               as IpState,
+      myFormState: null == myFormState
+          ? _value.myFormState
+          : myFormState // ignore: cast_nullable_to_non_nullable
+              as MyFormState,
     ) as $Val);
   }
 
@@ -69,6 +76,16 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       return _then(_value.copyWith(ipState: value) as $Val);
     });
   }
+
+  /// Create a copy of AppState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MyFormStateCopyWith<$Res> get myFormState {
+    return $MyFormStateCopyWith<$Res>(_value.myFormState, (value) {
+      return _then(_value.copyWith(myFormState: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -79,10 +96,12 @@ abstract class _$$AppStateImplCopyWith<$Res>
       __$$AppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({IpState ipState});
+  $Res call({IpState ipState, MyFormState myFormState});
 
   @override
   $IpStateCopyWith<$Res> get ipState;
+  @override
+  $MyFormStateCopyWith<$Res> get myFormState;
 }
 
 /// @nodoc
@@ -99,12 +118,17 @@ class __$$AppStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? ipState = null,
+    Object? myFormState = null,
   }) {
     return _then(_$AppStateImpl(
       ipState: null == ipState
           ? _value.ipState
           : ipState // ignore: cast_nullable_to_non_nullable
               as IpState,
+      myFormState: null == myFormState
+          ? _value.myFormState
+          : myFormState // ignore: cast_nullable_to_non_nullable
+              as MyFormState,
     ));
   }
 }
@@ -112,14 +136,17 @@ class __$$AppStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppStateImpl extends _AppState {
-  const _$AppStateImpl({required this.ipState}) : super._();
+  const _$AppStateImpl({required this.ipState, required this.myFormState})
+      : super._();
 
   @override
   final IpState ipState;
+  @override
+  final MyFormState myFormState;
 
   @override
   String toString() {
-    return 'AppState(ipState: $ipState)';
+    return 'AppState(ipState: $ipState, myFormState: $myFormState)';
   }
 
   @override
@@ -127,11 +154,13 @@ class _$AppStateImpl extends _AppState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppStateImpl &&
-            (identical(other.ipState, ipState) || other.ipState == ipState));
+            (identical(other.ipState, ipState) || other.ipState == ipState) &&
+            (identical(other.myFormState, myFormState) ||
+                other.myFormState == myFormState));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, ipState);
+  int get hashCode => Object.hash(runtimeType, ipState, myFormState);
 
   /// Create a copy of AppState
   /// with the given fields replaced by the non-null parameter values.
@@ -143,11 +172,15 @@ class _$AppStateImpl extends _AppState {
 }
 
 abstract class _AppState extends AppState {
-  const factory _AppState({required final IpState ipState}) = _$AppStateImpl;
+  const factory _AppState(
+      {required final IpState ipState,
+      required final MyFormState myFormState}) = _$AppStateImpl;
   const _AppState._() : super._();
 
   @override
   IpState get ipState;
+  @override
+  MyFormState get myFormState;
 
   /// Create a copy of AppState
   /// with the given fields replaced by the non-null parameter values.

@@ -12,6 +12,10 @@ abstract class DefaultAction<T> {
 
   //Call this method in redux middleware
   bool get isRunning => _runningActions.containsKey(runtimeType);
+}
+
+abstract class AsyncDefaultAction<T> extends DefaultAction<T> {
+  const AsyncDefaultAction();
 
   //Call this method in redux middleware
   Future<Result<T>> payload(AppState state, NextDispatcher next);
@@ -34,6 +38,19 @@ abstract class DefaultAction<T> {
     }
     _runningActions.remove(runtimeType);
     log('Action is finished');
+    return result;
+  }
+}
+
+abstract class SyncDefaultAction<T> extends DefaultAction<T> {
+  const SyncDefaultAction();
+
+  //Call this method in redux middleware
+  Result<T> payload(AppState state, NextDispatcher next);
+
+  //Call this method from UI
+  Result<T> execute() {
+    final result = appStore.dispatch(this);
     return result;
   }
 }

@@ -3,11 +3,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myspace_design_system/myspace_design_system.dart';
 import 'package:myspace_flutter_tool/src/data/redux/app/app_store.dart';
-import 'package:myspace_flutter_tool/src/data/repositories/yaml/yaml_local.dart';
 import 'package:myspace_flutter_tool/src/presentation/pages/homepage/homepage.dart';
 import 'package:myspace_flutter_tool/src/presentation/pages/redux_cases/form/form_page.dart';
 
-import 'src/data/repositories/yaml/yaml.dart';
 // import 'package:window_manager/window_manager.dart';
 
 void main() async {
