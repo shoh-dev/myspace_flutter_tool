@@ -3,6 +3,7 @@
 //active switch
 
 import 'package:flutter/material.dart';
+import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
 import 'package:myspace_flutter_tool/src/data/redux/states/form_state/actions/change_form_values_action.dart';
 import 'package:myspace_flutter_tool/src/data/redux/states/form_state/model/model.dart';
 import 'package:myspace_flutter_tool/src/data/redux/ui/state_provider.dart';
@@ -12,7 +13,8 @@ class FormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<MyFormState>(
+    return StateProvider<FlutterToolAppState, MyFormState>(
+        key: const Key('form_page'),
         selector: (state) => state.myFormState,
         builder: (context, vm, _) {
           return Scaffold(

@@ -19,10 +19,19 @@ class IpState with _$IpState {
       yaml: Result.error(ResultException("No yaml data loaded yet")));
 }
 
-class UpdateIpStateAction {
+class UpdateIpStateAction extends UpdateStateReducer<IpState> {
   final Result<String>? ip;
   final int? count;
   final Result<Map<String, dynamic>>? yaml;
 
   const UpdateIpStateAction({this.ip, this.count, this.yaml});
+
+  @override
+  IpState rebuildState(IpState oldState) {
+    return oldState.copyWith(
+      ip: ip ?? oldState.ip,
+      count: count ?? oldState.count,
+      yaml: yaml ?? oldState.yaml,
+    );
+  }
 }

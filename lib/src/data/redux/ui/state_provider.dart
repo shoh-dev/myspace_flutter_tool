@@ -6,7 +6,7 @@ import 'package:myspace_core/myspace_core.dart';
 import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
 import 'package:myspace_flutter_tool/src/presentation/components/error_indicator.dart';
 
-typedef Selector<T> = T Function(AppState state);
+typedef Selector<St, T> = T Function(St state);
 typedef ErrorBuilder<T> = Widget Function(
     BuildContext context, ResultError<T> vm);
 typedef OkBuilder<T> = Widget Function(BuildContext context, ResultOk<T> vm);
@@ -14,7 +14,7 @@ typedef CustomBuilder<T> = Widget Function(BuildContext context, Result<T> vm);
 typedef NormalBuilder<T> = Widget Function(
     BuildContext context, T vm, VoidCallback? retryAction);
 
-class ResultStateProvider<T> extends StatelessWidget {
+class ResultStateProvider<St, T> extends StatelessWidget {
   const ResultStateProvider({
     super.key,
     required this.selector,
@@ -51,17 +51,17 @@ class ResultStateProvider<T> extends StatelessWidget {
   // void onDispose(Store<AppState> store) {}
 
   ///[selector] is a function that takes the current state and returns the view model as a [Result<T>]
-  final Selector<Result<T>> selector;
+  final Selector<St, Result<T>> selector;
 
   final OnInitialBuildCallback<Result<T>>? onInitialBuild;
 
-  final OnDisposeCallback<AppState>? onDispose;
+  final OnDisposeCallback<St>? onDispose;
 
   final OnDidChangeCallback<Result<T>>? onDidChange;
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, Result<T>>(
+    return StoreConnector<St, Result<T>>(
       distinct: true,
       converter: (store) => selector(store.state),
       onInitialBuild: onInitialBuild,
@@ -98,7 +98,7 @@ class ResultStateProvider<T> extends StatelessWidget {
   }
 }
 
-class StateProvider<T> extends StatelessWidget {
+class StateProvider<St, T> extends StatelessWidget {
   const StateProvider({
     super.key,
     required this.selector,
@@ -117,17 +117,17 @@ class StateProvider<T> extends StatelessWidget {
   final NormalBuilder<T> builder;
 
   ///[selector] is a function that takes the current state and returns the view model as a [Result<T>]
-  final Selector<T> selector;
+  final Selector<St, T> selector;
 
   final OnInitialBuildCallback<T>? onInitialBuild;
 
-  final OnDisposeCallback<AppState>? onDispose;
+  final OnDisposeCallback<St>? onDispose;
 
   final OnDidChangeCallback<T>? onDidChange;
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, T>(
+    return StoreConnector<St, T>(
       distinct: true,
       converter: (store) => selector(store.state),
       onInitialBuild: onInitialBuild,

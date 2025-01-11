@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myspace_core/myspace_core.dart';
 import 'package:myspace_design_system/myspace_design_system.dart';
 import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
+import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/actions/actions.dart';
 import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/actions/get_yaml_action.dart';
-import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/actions/increment_action.dart';
-import 'package:myspace_flutter_tool/src/data/redux/ui/state_provider.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -14,10 +14,17 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ResultStateProvider<Map<String, dynamic>>(
+      body: ResultStateProvider<FlutterToolAppState, Map<String, dynamic>>(
         key: const Key('Homepage'),
         selector: (state) => state.ipState.yaml,
         retryAction: action.execute,
+        errorBuilder: (context, vm) {
+          return ButtonComponent.destructive(
+            icon: Icons.error,
+            text: vm.error.toString(),
+            onPressed: action.execute,
+          );
+        },
         okBuilder: (context, vm) {
           return Center(
             child: Row(
@@ -49,7 +56,7 @@ class HomepageCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StateProvider<int>(
+    return StateProvider<FlutterToolAppState, int>(
       key: const Key('HomepageCounter'),
       selector: (state) => state.ipState.count,
       retryAction: const IncrementAction().execute,

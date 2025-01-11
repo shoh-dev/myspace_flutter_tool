@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myspace_core/myspace_core.dart';
 import 'package:myspace_design_system/myspace_design_system.dart';
-import 'package:myspace_flutter_tool/src/data/redux/app/app_store.dart';
+import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
 import 'package:myspace_flutter_tool/src/presentation/pages/homepage/homepage.dart';
 import 'package:myspace_flutter_tool/src/presentation/pages/redux_cases/form/form_page.dart';
 
-// import 'package:window_manager/window_manager.dart';
+import 'src/data/redux/app/reducer.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
-  // Must add this line.
-  // await windowManager.ensureInitialized();
+  final appStore = AppStore<FlutterToolAppState>(
+    initialState: FlutterToolAppState.initial(),
+    reducer: ReduxAppReducer(),
+  ).createStore();
 
-  // WindowOptions windowOptions = const WindowOptions(
-  //   size: Size(1280, 800),
-  //   minimumSize: Size(1280, 800),
-  //   maximumSize: Size(1280, 800),
-  //   center: true,
-  // );
-
-  // await windowManager.waitUntilReadyToShow(windowOptions);
-
-  runApp(StoreProvider(store: appStore, child: const MySpaceFlutterToolApp()));
+  runApp(
+    AppStoreProvider(
+      store: appStore,
+      child: const MySpaceFlutterToolApp(),
+    ),
+  );
 }
 
 class MySpaceFlutterToolApp extends StatefulWidget {
@@ -65,3 +63,15 @@ GoRouter _router = GoRouter(
     ),
   ],
 );
+
+
+  // await windowManager.ensureInitialized();
+
+  // WindowOptions windowOptions = const WindowOptions(
+  //   size: Size(1280, 800),
+  //   minimumSize: Size(1280, 800),
+  //   maximumSize: Size(1280, 800),
+  //   center: true,
+  // );
+
+  // await windowManager.waitUntilReadyToShow(windowOptions);

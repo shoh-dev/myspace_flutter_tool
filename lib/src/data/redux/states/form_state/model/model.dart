@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:myspace_core/myspace_core.dart';
 part 'model.freezed.dart';
 
 @Freezed()
@@ -19,10 +20,19 @@ class MyFormState with _$MyFormState {
       );
 }
 
-class UpdateFormStateAction {
+class UpdateFormStateAction extends UpdateStateReducer<MyFormState> {
   final String? name;
   final String? email;
   final bool? isActive;
 
-  const UpdateFormStateAction({this.email, this.isActive, this.name});
+  UpdateFormStateAction({this.email, this.isActive, this.name});
+
+  @override
+  MyFormState rebuildState(MyFormState oldState) {
+    return MyFormState(
+      name: name ?? oldState.name,
+      email: email ?? oldState.email,
+      isActive: isActive ?? oldState.isActive,
+    );
+  }
 }

@@ -1,21 +1,28 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/model/model.dart';
 
 import '../states/form_state/model/model.dart';
 
-part 'app_state.freezed.dart';
+class FlutterToolAppState {
+  final IpState ipState;
+  final MyFormState myFormState;
 
-@Freezed()
-class AppState with _$AppState {
-  const AppState._();
+  const FlutterToolAppState({
+    required this.ipState,
+    required this.myFormState,
+  });
 
-  const factory AppState({
-    required IpState ipState,
-    required MyFormState myFormState,
-  }) = _AppState;
-
-  factory AppState.initial() => AppState(
+  factory FlutterToolAppState.initial() => FlutterToolAppState(
         ipState: IpState.initial(),
         myFormState: MyFormState.initial(),
       );
+
+  FlutterToolAppState copyWith({
+    IpState? ipState,
+    MyFormState? myFormState,
+  }) {
+    return FlutterToolAppState(
+      ipState: ipState ?? this.ipState,
+      myFormState: myFormState ?? this.myFormState,
+    );
+  }
 }
