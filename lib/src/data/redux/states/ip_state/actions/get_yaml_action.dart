@@ -4,11 +4,13 @@ import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/model/model.
 import 'package:myspace_flutter_tool/src/data/repositories/yaml/yaml_local.dart';
 import 'package:redux/redux.dart';
 
-class GetYamlAction extends AsyncDefaultAction<FlutterToolAppState> {
+class GetYamlAction
+    extends AsyncDefaultAction<FlutterToolAppState, Map<String, dynamic>> {
   const GetYamlAction();
 
   @override
-  Future<Result> payload(FlutterToolAppState state, NextDispatcher next) async {
+  Future<Result<Map<String, dynamic>>> payload(
+      FlutterToolAppState state, NextDispatcher next) async {
     await Future.delayed(const Duration(seconds: 2));
     try {
       final resultLoad = YamlRepoLocal().getPubspecYamlMapFromPath(

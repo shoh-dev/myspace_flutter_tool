@@ -6,67 +6,62 @@ import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
 import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/actions/actions.dart';
 import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/actions/get_yaml_action.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage
+    extends ResultStateProvider<FlutterToolAppState, Map<String, dynamic>> {
   const Homepage({super.key});
 
-  final action = const GetYamlAction();
+  @override
+  Widget? errorBuilder(
+      BuildContext context, ResultError<Map<String, dynamic>> vm) {
+    return ButtonComponent.destructive(
+      icon: Icons.error,
+      text: vm.error.toString(),
+      onPressed: const GetYamlAction().execute,
+    );
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ResultStateProvider<FlutterToolAppState, Map<String, dynamic>>(
-        key: const Key('Homepage'),
-        selector: (state) => state.ipState.yaml,
-        retryAction: action.execute,
-        errorBuilder: (context, vm) {
-          return ButtonComponent.destructive(
-            icon: Icons.error,
-            text: vm.error.toString(),
-            onPressed: action.execute,
-          );
-        },
-        okBuilder: (context, vm) {
-          return Center(
-            child: Row(
-              spacing: 16,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ButtonComponent.destructive(
-                  icon: Icons.note_add_rounded,
-                  text: "Go To Form Page",
-                  onPressed: () => context.push("/form"),
-                ),
-                ButtonComponent.primary(
-                  icon: Icons.add,
-                  text: vm.value.toString().substring(0, 2),
-                  onPressed: action.execute,
-                ),
-                const HomepageCounter(),
-              ],
-            ),
-          );
-        },
+  Widget? okBuilder(BuildContext context, ResultOk<Map<String, dynamic>> vm) {
+    return Center(
+      child: Row(
+        spacing: 16,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ButtonComponent.destructive(
+            icon: Icons.note_add_rounded,
+            text: "Go To Form Page",
+            onPressed: () => context.push("/form"),
+          ),
+          ButtonComponent.primary(
+            icon: Icons.add,
+            text: vm.value.toString().substring(0, 2),
+            onPressed: const GetYamlAction().execute,
+          ),
+          const HomepageCounter(),
+        ],
       ),
     );
   }
+
+  @override
+  Result<Map<String, dynamic>> selector(FlutterToolAppState state) =>
+      state.ipState.yaml;
 }
 
-class HomepageCounter extends StatelessWidget {
+class HomepageCounter extends StateProvider<FlutterToolAppState, int> {
   const HomepageCounter({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return StateProvider<FlutterToolAppState, int>(
-      key: const Key('HomepageCounter'),
-      selector: (state) => state.ipState.count,
-      retryAction: const IncrementAction().execute,
-      builder: (context, vm, retryAction) {
-        return ButtonComponent.primary(
-          icon: Icons.add,
-          text: vm.toString(),
-          onPressed: retryAction,
-        );
-      },
+  int selector(FlutterToolAppState state) {
+    return state.ipState.count;
+  }
+
+  @override
+  Widget builder(BuildContext context, int vm) {
+    return ButtonComponent.primary(
+      icon: Icons.add,
+      text: vm.toString(),
+      onPressed: const IncrementAction().execute,
     );
   }
 }
