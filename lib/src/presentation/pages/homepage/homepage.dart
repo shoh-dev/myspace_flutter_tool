@@ -16,7 +16,7 @@ class Homepage
     return ButtonComponent.destructive(
       icon: Icons.error,
       text: vm.error.toString(),
-      onPressed: const GetYamlAction().execute,
+      onPressed: () => context.push("/form"),
     );
   }
 

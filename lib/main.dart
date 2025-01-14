@@ -58,7 +58,7 @@ GoRouter _router = GoRouter(
     GoRoute(
       path: "/form",
       builder: (context, state) {
-        return const FormPage();
+        return FormPage();
       },
     ),
   ],
