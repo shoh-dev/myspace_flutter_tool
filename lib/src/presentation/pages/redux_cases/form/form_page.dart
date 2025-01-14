@@ -58,9 +58,7 @@ class FormPage extends StateProvider<FlutterToolAppState, MyFormState> {
                     DropdownItem(value: "3", label: "Three"),
                   ],
                   // initialValue: DropdownItem(value: "1", label: "One"),
-                  onChanged: (value) {
-                    print(value);
-                  },
+                  onChanged: (value) {},
                   hintText: "Select an item",
                   initialValue: DropdownItem(value: "3", label: "Three"),
                   label: "Dropdown",
