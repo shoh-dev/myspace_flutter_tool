@@ -51,6 +51,22 @@ class FormPage extends StateProvider<FlutterToolAppState, MyFormState> {
                     ChangeFormValuesAction(isActive: value).execute();
                   },
                 ),
+                DropdownComponent<String>(
+                  items: [
+                    DropdownItem(value: "1", label: "One"),
+                    DropdownItem(value: "2", label: "Two"),
+                    DropdownItem(value: "3", label: "Three"),
+                  ],
+                  // initialValue: DropdownItem(value: "1", label: "One"),
+                  onChanged: (value) {
+                    print(value);
+                  },
+                  hintText: "Select an item",
+                  initialValue: DropdownItem(value: "3", label: "Three"),
+                  label: "Dropdown",
+                  validator: (value) =>
+                      value?.value == "1" ? null : 'Please select One',
+                ),
                 ButtonComponent.primary(
                   text: 'Submit',
                   onPressed: () {
