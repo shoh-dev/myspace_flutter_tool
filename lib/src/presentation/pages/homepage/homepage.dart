@@ -8,7 +8,25 @@ import 'package:myspace_flutter_tool/src/data/redux/states/ip_state/actions/get_
 
 class Homepage
     extends ResultStateProvider<FlutterToolAppState, Map<String, dynamic>> {
-  const Homepage({super.key});
+  const Homepage({super.key = const Key("Homepage")});
+
+  @override
+  Widget wrapper(Widget child) {
+    print("Homepage wrapper");
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Homepage"),
+        actions: [
+          const IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: null,
+            // onPressed: () => context.push("/settings"),
+          ),
+        ],
+      ),
+      body: Center(child: child),
+    );
+  }
 
   @override
   Widget? errorBuilder(
@@ -16,30 +34,29 @@ class Homepage
     return ButtonComponent.destructive(
       icon: Icons.error,
       text: vm.error.toString(),
-      onPressed: () => context.push("/form"),
+      // onPressed: () => context.push("/form"),
+      onPressed: const GetYamlAction().execute,
     );
   }
 
   @override
   Widget? okBuilder(BuildContext context, ResultOk<Map<String, dynamic>> vm) {
-    return Center(
-      child: Row(
-        spacing: 16,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ButtonComponent.destructive(
-            icon: Icons.note_add_rounded,
-            text: "Go To Form Page",
-            onPressed: () => context.push("/form"),
-          ),
-          ButtonComponent.primary(
-            icon: Icons.add,
-            text: vm.value.toString().substring(0, 2),
-            onPressed: const GetYamlAction().execute,
-          ),
-          const HomepageCounter(),
-        ],
-      ),
+    return Row(
+      spacing: 16,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ButtonComponent.destructive(
+          icon: Icons.note_add_rounded,
+          text: "Go To Form Page",
+          onPressed: () => context.push("/form"),
+        ),
+        ButtonComponent.primary(
+          icon: Icons.add,
+          text: vm.value.toString().substring(0, 2),
+          onPressed: const GetYamlAction().execute,
+        ),
+        const HomepageCounter(),
+      ],
     );
   }
 
@@ -49,7 +66,7 @@ class Homepage
 }
 
 class HomepageCounter extends StateProvider<FlutterToolAppState, int> {
-  const HomepageCounter({super.key});
+  const HomepageCounter({super.key = const Key("HomepageCounter")});
 
   @override
   int selector(FlutterToolAppState state) {

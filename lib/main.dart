@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:myspace_core/myspace_core.dart';
 import 'package:myspace_design_system/myspace_design_system.dart';
 import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
+import 'package:myspace_flutter_tool/src/data/repositories/yaml/yaml.dart';
+import 'package:myspace_flutter_tool/src/data/repositories/yaml/yaml_local.dart';
 import 'package:myspace_flutter_tool/src/presentation/pages/homepage/homepage.dart';
 import 'package:myspace_flutter_tool/src/presentation/pages/redux_cases/form/form_page.dart';
 
@@ -15,6 +17,8 @@ void main() async {
     initialState: FlutterToolAppState.initial(),
     reducer: ReduxAppReducer(),
   ).createStore();
+
+  DependencyInjection.register<YamlRepo>(YamlRepoLocal());
 
   runApp(
     AppStoreProvider(
