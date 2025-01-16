@@ -12,9 +12,8 @@ class GetYamlAction
   Future<Result<Map<String, dynamic>>> payload(
       FlutterToolAppState state, NextDispatcher next) async {
     try {
-      final resultLoad = DependencyInjection.get<YamlRepo>()
-          .getPubspecYamlMapFromPath(
-              "/Users/shohjahon/Documents/github/personal/myspace/myspace_flutter_tool");
+      final resultLoad = getDependency<YamlRepo>().getPubspecYamlMapFromPath(
+          "/Users/shohjahon/Documents/github/personal/myspace/myspace_flutter_tool");
       next(UpdateIpStateAction(yaml: resultLoad));
       return resultLoad;
     } catch (e) {

@@ -16,13 +16,13 @@ void main() async {
   final appStore = AppStore<FlutterToolAppState>(
     initialState: FlutterToolAppState.initial(),
     reducer: ReduxAppReducer(),
-  ).createStore();
+  );
 
-  DependencyInjection.register<YamlRepo>(YamlRepoLocal());
+  appStore.register<YamlRepo>(YamlRepoLocal());
 
   runApp(
     AppStoreProvider(
-      store: appStore,
+      store: appStore.createStore(),
       child: const MySpaceFlutterToolApp(),
     ),
   );
