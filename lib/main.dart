@@ -54,7 +54,7 @@ GoRouter _router = GoRouter(
     GoRoute(
       path: "/",
       builder: (context, state) {
-        return const Homepage();
+        return Homepage();
       },
     ),
 
