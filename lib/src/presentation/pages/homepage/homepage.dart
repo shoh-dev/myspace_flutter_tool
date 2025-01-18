@@ -27,56 +27,40 @@ final List<MyModel> models = [
     ),
 ];
 
-class Homepage extends StatefulComonent {
+class Homepage extends StatelessWidget {
   const Homepage({super.key});
-
-  @override
-  ComponentState<Homepage> createState() => _HomepageState();
-}
-
-class _HomepageState extends ComponentState<Homepage> {
-  final DatatableManager manager = DatatableManager();
-
-  @override
-  void initState() {
-    manager.addListener(() {
-      setState(() {});
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(manager.getSortColumn.toString()),
-      ),
-      body: Center(
-        child: DatatableComponent(
-          manager: manager,
-          onRowActionPressed: (row, value) {
-            print(
-                'Row action pressed for ${row.cells} with value ${value.value}');
-          },
-          rowActions: [
-            DropdownItem<String>(value: 'edit', label: 'Edit'),
-            DropdownItem<String>(value: 'delete', label: 'Delete'),
-          ],
-          columns: [
-            ColumnDef.text(label: "Status"),
-            ColumnDef.text(label: "Email"),
-            ColumnDef.text(label: "Amount"),
-          ],
-          rows: [
-            for (var model in models)
-              RowDef(
-                cells: [
-                  CellDef.text(model.status.name.toUpperCase()),
-                  CellDef.text(model.email),
-                  CellDef.currency(model.amount),
-                ],
-              ),
-          ],
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Center(
+          child: DatatableComponent(
+            onRowActionPressed: (row, value) {
+              print(
+                  'Row action pressed for ${row.cells} with value ${value.value}');
+            },
+            rowActions: [
+              DropdownItem<String>(value: 'edit', label: 'Edit'),
+              DropdownItem<String>(value: 'delete', label: 'Delete'),
+            ],
+            columns: [
+              ColumnDef.text(label: "Status"),
+              ColumnDef.text(label: "Email"),
+              ColumnDef.text(label: "Amount"),
+            ],
+            rows: [
+              for (var model in models)
+                RowDef(
+                  cells: [
+                    CellDef.text(model.status.name.toUpperCase()),
+                    CellDef.text(model.email),
+                    CellDef.currency(model.amount),
+                  ],
+                ),
+            ],
+          ),
         ),
       ),
     );
