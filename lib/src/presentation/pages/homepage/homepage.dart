@@ -49,25 +49,33 @@ class _HomepageState extends ComponentState<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(manager.getSortColumn?.label.toString() ?? "-"),
+        title: Text(manager.getSortColumn.toString()),
       ),
       body: Center(
         child: SizedBox(
           width: 600,
           child: DatatableComponent(
             manager: manager,
+            onRowActionPressed: (row, value) {
+              print(
+                  'Row action pressed for ${row.cells} with value ${value.value}');
+            },
+            rowActions: [
+              DropdownItem<String>(value: 'edit', label: 'Edit'),
+              DropdownItem<String>(value: 'delete', label: 'Delete'),
+            ],
             columns: [
               ColumnDef.text(label: "Status"),
               ColumnDef.text(label: "Email"),
-              ColumnDef.number(label: "Amount"),
+              ColumnDef.text(label: "Amount"),
             ],
             rows: [
               for (var model in models)
                 RowDef(
-                  rowCells: [
-                    CellDef.text(text: model.status.name.toUpperCase()),
-                    CellDef.text(text: model.email),
-                    CellDef.number(number: model.amount),
+                  cells: [
+                    CellDef.text(model.status.name.toUpperCase()),
+                    CellDef.text(model.email),
+                    CellDef.number(model.amount),
                   ],
                 ),
             ],

@@ -15,8 +15,9 @@ Tools • Dart 3.6.0 • DevTools 2.40.2
 ### Todos
 
 - TABLE
-    - action button
+    - [DONE] action button
+    - pagination
 
 
 - COMPONENTS
-    - popup menu button
+    - [DONE] popup menu button
