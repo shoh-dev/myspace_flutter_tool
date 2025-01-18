@@ -18,13 +18,13 @@ class MyModel {
   });
 }
 
-const List<MyModel> models = [
-  MyModel(status: Status.success, email: 'ken99@yahoo.com', amount: 316),
-  MyModel(status: Status.failed, email: 'carmella@hotmail.com', amount: 721),
-  MyModel(status: Status.success, email: 'Silas22@gmail.com', amount: 874),
-  MyModel(
-      status: Status.processing, email: 'Monserrat44@gmail.com', amount: 837),
-  MyModel(status: Status.success, email: 'Abe45@gmail.com', amount: 232323),
+final List<MyModel> models = [
+  for (int i = 0; i < 100; i++)
+    MyModel(
+      status: Status.values[i % 3],
+      email: 'email$i@mail.com',
+      amount: i * 100.0,
+    ),
 ];
 
 class Homepage extends StatefulComonent {
@@ -52,34 +52,31 @@ class _HomepageState extends ComponentState<Homepage> {
         title: Text(manager.getSortColumn.toString()),
       ),
       body: Center(
-        child: SizedBox(
-          width: 600,
-          child: DatatableComponent(
-            manager: manager,
-            onRowActionPressed: (row, value) {
-              print(
-                  'Row action pressed for ${row.cells} with value ${value.value}');
-            },
-            rowActions: [
-              DropdownItem<String>(value: 'edit', label: 'Edit'),
-              DropdownItem<String>(value: 'delete', label: 'Delete'),
-            ],
-            columns: [
-              ColumnDef.text(label: "Status"),
-              ColumnDef.text(label: "Email"),
-              ColumnDef.text(label: "Amount"),
-            ],
-            rows: [
-              for (var model in models)
-                RowDef(
-                  cells: [
-                    CellDef.text(model.status.name.toUpperCase()),
-                    CellDef.text(model.email),
-                    CellDef.number(model.amount),
-                  ],
-                ),
-            ],
-          ),
+        child: DatatableComponent(
+          manager: manager,
+          onRowActionPressed: (row, value) {
+            print(
+                'Row action pressed for ${row.cells} with value ${value.value}');
+          },
+          rowActions: [
+            DropdownItem<String>(value: 'edit', label: 'Edit'),
+            DropdownItem<String>(value: 'delete', label: 'Delete'),
+          ],
+          columns: [
+            ColumnDef.text(label: "Status"),
+            ColumnDef.text(label: "Email"),
+            ColumnDef.text(label: "Amount"),
+          ],
+          rows: [
+            for (var model in models)
+              RowDef(
+                cells: [
+                  CellDef.text(model.status.name.toUpperCase()),
+                  CellDef.text(model.email),
+                  CellDef.currency(model.amount),
+                ],
+              ),
+          ],
         ),
       ),
     );
