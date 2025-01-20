@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:myspace_core/myspace_core.dart';
+import 'package:myspace_flutter_tool/src/data/models/pubspec_yaml.dart';
 import 'package:yaml/yaml.dart';
 
 import 'yaml.dart';
 
 class YamlRepoLocal implements YamlRepo {
   @override
-  Result<Map<String, dynamic>> getPubspecYamlMapFromPath(String path) {
+  Result<PubspecYamlModel> getPubspecYaml(String path) {
     final pubspecFile = File('$path/pubspec.yaml');
 
     if (!pubspecFile.existsSync()) {
@@ -18,7 +19,8 @@ class YamlRepoLocal implements YamlRepo {
     final pubspecContent = pubspecFile.readAsStringSync();
     final yamlMap = loadYaml(pubspecContent);
     if (yamlMap is Map) {
-      return Result.ok(yamlMap.cast<String, dynamic>());
+      return Result.ok(
+          PubspecYamlModel.fromJson(yamlMap.cast<String, dynamic>()));
     }
 
     return Result.error(ResultException(

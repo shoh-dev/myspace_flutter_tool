@@ -21,9 +21,10 @@ dependencies:
   window_manager: ^0.4.3
   yaml: ^3.1.3
   go_router: ^14.6.3
-  flutter_redux: ^0.10.0
   redux: ^5.0.0
+  flutter_redux: ^0.10.0
   freezed_annotation: ^2.4.3
+  pub_api_client: ^3.1.0
 
 dev_dependencies:
   flutter_test:

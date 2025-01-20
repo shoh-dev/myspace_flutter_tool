@@ -5,7 +5,7 @@ import 'package:myspace_design_system/myspace_design_system.dart';
 import 'package:myspace_flutter_tool/src/data/redux/redux.dart';
 import 'package:myspace_flutter_tool/src/data/repositories/yaml/yaml.dart';
 import 'package:myspace_flutter_tool/src/data/repositories/yaml/yaml_local.dart';
-import 'package:myspace_flutter_tool/src/presentation/pages/homepage/homepage.dart';
+import 'package:myspace_flutter_tool/src/presentation/pages/pubspec/page.dart';
 import 'package:myspace_flutter_tool/src/presentation/pages/redux_cases/form/form_page.dart';
 
 import 'src/data/redux/app/reducer.dart';
@@ -41,7 +41,7 @@ class _MySpaceFlutterToolAppState extends State<MySpaceFlutterToolApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      title: 'My Space Flutter Tool',
       theme: fCodeTheme.lightTheme,
       darkTheme: fCodeTheme.darkTheme,
       routerConfig: _router,
@@ -54,7 +54,7 @@ GoRouter _router = GoRouter(
     GoRoute(
       path: "/",
       builder: (context, state) {
-        return Homepage();
+        return const PubspecPage();
       },
     ),
 
