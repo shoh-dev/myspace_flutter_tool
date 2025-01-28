@@ -1,6 +1,7 @@
 name: myspace_flutter_tool
 description: "MySpace Flutter Tool"
 homepage: www.shoh.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -10,12 +11,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  repositories:
+    path: packages/repositories
+
   cupertino_icons: ^1.0.8
 
   # FCode packages START
   myspace_design_system: ^0.0.1
   myspace_core: ^0.0.1
-  myspace_macros: ^0.0.1
   # FCode packages END
 
   window_manager: ^0.4.3
@@ -23,15 +27,14 @@ dependencies:
   go_router: ^14.6.3
   redux: ^5.0.0
   flutter_redux: ^0.10.0
-  freezed_annotation: ^2.4.3
   pub_api_client: ^3.1.0
+  equatable: ^2.0.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
   build_runner: ^2.4.14
-  freezed: ^2.5.2
 
 flutter:
   uses-material-design: true
