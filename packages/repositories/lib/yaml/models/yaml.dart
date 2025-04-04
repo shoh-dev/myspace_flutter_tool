@@ -1,6 +1,8 @@
+import 'package:equatable/equatable.dart';
+
 import 'yaml_dependency.dart';
 
-class YamlModel {
+class YamlModel extends Equatable {
   final String name;
   final String description;
   final String version;
@@ -39,4 +41,15 @@ class YamlModel {
       ],
     );
   }
+
+  @override
+  List<Object?> get props => [
+        name,
+        description,
+        version,
+        homepage,
+        dartSdkVersion,
+        dependencies,
+        devDependencies,
+      ];
 }

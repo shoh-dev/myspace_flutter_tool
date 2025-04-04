@@ -1,25 +1,25 @@
-import 'package:equatable/equatable.dart';
-import 'package:myspace_flutter_tool/yaml/yaml.dart';
+// import 'package:equatable/equatable.dart';
+// import 'package:myspace_flutter_tool/yaml/yaml.dart';
 
-class AppState extends Equatable {
-  final YamlState yamlState;
+// class AppState extends Equatable {
+//   final YamlState yamlState;
 
-  const AppState({
-    required this.yamlState,
-  });
+//   const AppState({
+//     required this.yamlState,
+//   });
 
-  factory AppState.initial() => AppState(
-        yamlState: YamlState.initial(),
-      );
+//   factory AppState.initial() => AppState(
+//         yamlState: YamlState.initial(),
+//       );
 
-  AppState copyWith({
-    YamlState? yamlState,
-  }) {
-    return AppState(
-      yamlState: yamlState ?? this.yamlState,
-    );
-  }
+//   AppState copyWith({
+//     YamlState? yamlState,
+//   }) {
+//     return AppState(
+//       yamlState: yamlState ?? this.yamlState,
+//     );
+//   }
 
-  @override
-  List<Object?> get props => [yamlState];
-}
+//   @override
+//   List<Object?> get props => [yamlState];
+// }

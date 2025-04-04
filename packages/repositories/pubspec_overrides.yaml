@@ -1,0 +1,8 @@
+# melos_managed_dependency_overrides: myspace_core,myspace_design_system,myspace_ui
+dependency_overrides:
+  myspace_core:
+    path: ../../../../packages/myspace_core
+  myspace_design_system:
+    path: ../../../../packages/myspace_design_system
+  myspace_ui:
+    path: ../../../../packages/myspace_ui
