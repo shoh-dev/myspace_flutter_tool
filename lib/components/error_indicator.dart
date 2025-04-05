@@ -19,6 +19,43 @@ class ErrorIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return Column(
+    //   mainAxisAlignment: MainAxisAlignment.center,
+    //   crossAxisAlignment: CrossAxisAlignment.center,
+    //   children: [
+    //     IntrinsicWidth(
+    //       child: Padding(
+    //         padding: const EdgeInsets.all(8.0),
+    //         child: Center(
+    //           child: Row(
+    //             children: [
+    //               Icon(
+    //                 Icons.error_outline,
+    //                 color: Theme.of(context).colorScheme.onSurface,
+    //               ),
+    //               const SizedBox(width: 10),
+    //               Text(
+    //                 title,
+    //                 style: TextStyle(
+    //                   color: Theme.of(context).colorScheme.onSurface,
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //     const SizedBox(height: 10),
+    //     FilledButton(
+    //       onPressed: onPressed,
+    //       style: const ButtonStyle(
+    //         backgroundColor: WidgetStatePropertyAll(Colors.red),
+    //         foregroundColor: WidgetStatePropertyAll(Colors.white),
+    //       ),
+    //       child: Text(label),
+    //     ),
+    //   ],
+    // );
     return LayoutComponent.column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,

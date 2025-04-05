@@ -11,12 +11,22 @@ class DependencyLayout extends StatelessWidget {
     pages: [
       [
         UIPage(
-          name: 'dependency',
-          path: '/dependency',
-          vm: (context) => DependencyPageVm(context.readDependency()),
-          builder: (context, state, vm) =>
-              DependencyPage(vm: vm as DependencyPageVm),
-        ),
+            name: 'dependency',
+            path: '/dependency',
+            vm: (context) => DependencyPageVm(context.readDependency()),
+            builder: (context, state, vm) =>
+                DependencyPage(vm: vm as DependencyPageVm),
+            pages: [
+              UIDialog(
+                name: 'edit',
+                path: 'edit',
+                builder: (context, state, vm) => ErrorDialog(
+                  content: "Added successfully",
+                  actionText: 'Close',
+                  actionCallback: context.pop,
+                ),
+              ),
+            ]),
       ],
     ],
   );

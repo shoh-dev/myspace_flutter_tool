@@ -14,7 +14,7 @@ class DependencyPageVm extends Vm {
 
   Future<Result<void>> _loadPubspecYaml() async {
     const path =
-        "/Users/shoh/Documents/github/personal/myspace/apps1/myspace_flutter_tool";
+        "/Users/shoh/Documents/github/personal/myspace/apps/myspace_flutter_tool";
     final yaml = _yamlRepo.getPubspecYaml(path);
     switch (yaml) {
       case ResultOk<YamlModel>():
